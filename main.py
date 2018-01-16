@@ -20,8 +20,7 @@ class Blog(db.Model):
 
 @app.route('/')
 def index():
-    blogs=Blog.query.all()
-    
+    blogs=Blog.query.all()    
     return render_template('index.html', blogs=blogs)
 
 @app.route('/addblog')
@@ -30,10 +29,15 @@ def addblog():
 
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
+    error=''
+    
 
     if request.method=='POST':
         name = request.form['name']
         content = request.form['content']
+        if not name or not content:
+            error='     -------Please fill the the name and the content of the blog'
+            return render_template('addblog.html',error=error)
         new_blog = Blog(name, content)
         db.session.add(new_blog)
         db.session.commit()
