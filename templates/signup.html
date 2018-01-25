@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1><strong>Signup</strong></h1>
+<h3>{{already_exist}}</h3>
+
+<form method="post">
+    <label>Username
+        <input type="text" name="username" value="{{username}}" />
+    </label><span class="error">{{error_name}}</span><br />
+    <label>Password
+        <input type="password" name="password_top" />
+    </label><span class="error">{{error_password}}</span><br />
+    <label>Verify Password
+        <input type="password" name="password_bot" />
+    </label><span class="error">{{error_password}}</span><br />    
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
